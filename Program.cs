@@ -133,7 +133,12 @@ namespace Application
                 int attackCounter = turn;
 
 
-                if (attackCounter % 3 == 0)
+                if (attackCounter % 3 == 0 && attackCounter % 5 == 0)
+                {
+                    currentAttack = 10;
+
+                }
+                else if (attackCounter % 3 == 0)
                 {
                     currentAttack = 3;
 
@@ -141,11 +146,6 @@ namespace Application
                 else if (attackCounter % 5 == 0)
                 {
                     currentAttack = 5;
-
-                }
-                else if (attackCounter % 3 == 0 && attackCounter % 5 == 0)
-                {
-                    currentAttack = 10;
 
                 }
                 else
@@ -161,6 +161,7 @@ namespace Application
                 {
                     ReduceCityHealth();
                 }
+                
                 GameString($"The cannon is expected to do {currentAttack} damage to the Manticore this turn.");
 
 
@@ -193,11 +194,9 @@ namespace Application
                 return input;
             }
 
-            string GameString(string text)
+            void GameString(string text)
             {
                 Console.WriteLine(text);
-
-                return text;
             }
         }
     }
