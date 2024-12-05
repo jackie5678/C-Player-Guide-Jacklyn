@@ -1,34 +1,35 @@
 ﻿using System;
 
-namespace Application
+public class Class2
 {
-    class Program
-    {
-        static void Main(string[] args)
+	public void ChestSwitch()
+	{
+        Console.Title = "Simula’s Tes";
+        Console.ForegroundColor = ConsoleColor.Cyan;
+
+
+        Chest();
+
+        void Chest()
         {
-            Console.Title = "Simula’s Tes";
-            Console.ForegroundColor = ConsoleColor.Cyan;
+            string input = "";
+            CHESTSTATE chestState = CHESTSTATE.LOCK;
 
+            GameString("The see a chest in front of you. What would you like to do?");
+            GameString("You dont know its current state");
+            GameString("Here are your options");
+            GameString("1. Unlock the chest : Type unlock");
+            GameString("2. Open the chest: Type open");
+            GameString("3. Lock the chest: Type lock");
+            GameString("You can type : close : when the chest is open to close it");
 
-            void Chest()
+            while (true)
             {
-                string input = "";
-                CHESTSTATE chestState = CHESTSTATE.LOCK;
+                input = InteractWithChest(input);
 
-                GameString("The see a chest in front of you. What would you like to do?");
-                GameString("You dont know its current state");
-                GameString("Here are your options");
-                GameString("1. Unlock the chest : Type unlock");
-                GameString("2. Open the chest: Type open");
-                GameString("3. Lock the chest: Type lock");
-                GameString("You can type : close : when the chest is open to close it");
-
-                while (true)
+                switch (input)
                 {
-                    input = InteractWithChest(input);
-
-                    if (input == "LOCK")
-                    {
+                    case "LOCK":
                         if (chestState == CHESTSTATE.LOCK)
                         {
                             Console.ForegroundColor = ConsoleColor.Red;
@@ -45,9 +46,8 @@ namespace Application
                             chestState = CHESTSTATE.LOCK;
                             GameString("The chest is now locked.");
                         }
-                    }
-                    else if (input == "UNLOCK")
-                    {
+                        break;
+                    case "UNLOCK":
                         if (chestState == CHESTSTATE.UNLOCK)
                         {
                             Console.ForegroundColor = ConsoleColor.Red;
@@ -69,9 +69,8 @@ namespace Application
                             chestState = CHESTSTATE.UNLOCK;
                             GameString("The chest is now unlocked.");
                         }
-                    }
-                    else if (input == "OPEN")
-                    {
+                        break;
+                    case "OPEN":
                         if (chestState == CHESTSTATE.LOCK)
                         {
                             Console.ForegroundColor = ConsoleColor.Red;
@@ -88,9 +87,8 @@ namespace Application
                             chestState = CHESTSTATE.OPEN;
                             GameString("The chest is now open.");
                         }
-                    }
-                    else if (input == "CLOSE")
-                    {
+                        break;
+                    case "CLOSE":
                         if (chestState == CHESTSTATE.OPEN)
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
@@ -102,37 +100,44 @@ namespace Application
                             Console.ForegroundColor = ConsoleColor.Red;
                             GameString("The chest needs to be opened first!");
                         }
-                    }
-                    else
-                    {
+                        break;
+                    default:
                         Console.ForegroundColor = ConsoleColor.Red;
                         GameString("Invalid Input!");
-                    }
+                        break;
                 }
+
+
             }
 
-            void GameString(string text)
-            {
-                Console.WriteLine(text);
-                Console.WriteLine();
-            }
-
-            string InteractWithChest(string text)
-            {
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                text = Console.ReadLine();
-                text = text.ToUpper();
-                Console.WriteLine();
-                return text;
-            }
         }
 
-        enum CHESTSTATE
+        void GameString(string text)
         {
-            LOCK,
-            UNLOCK,
-            OPEN,
-            CLOSE
+
+            Console.WriteLine(text);
+            Console.WriteLine();
+        }
+
+
+        string InteractWithChest(string text)
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            text = Console.ReadLine();
+            text = text.ToUpper();
+            Console.WriteLine();
+            return text;
         }
     }
+
+    enum CHESTSTATE
+    {
+        LOCK,
+        UNLOCK,
+        OPEN,
+        CLOSE
+
+    }
+
 }
+
