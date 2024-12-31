@@ -6,110 +6,146 @@ namespace Application
     {
         static void Main(string[] args)
         {
-            Console.Title = "Simula’s Tes";
-            Console.ForegroundColor = ConsoleColor.Cyan;
+
+            (SOUPTYPE, MAININGREDIENT, SEASONING) soup = (SOUPTYPE.SOUP, MAININGREDIENT.MUSHROOM, SEASONING.SWEET);
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Title = "Simula Soup Shop";
 
 
-            void Chest()
+
+            SoupMaker();
+
+
+            void SoupMaker()
             {
-                string input = "";
-                CHESTSTATE chestState = CHESTSTATE.LOCK;
+                GameString("Welcome to Simula Soup Shop!");
+                GameString("What type of soup would you like to have made?");
 
-                GameString("The see a chest in front of you. What would you like to do?");
-                GameString("You dont know its current state");
-                GameString("Here are your options");
-                GameString("1. Unlock the chest : Type unlock");
-                GameString("2. Open the chest: Type open");
-                GameString("3. Lock the chest: Type lock");
-                GameString("You can type : close : when the chest is open to close it");
+                GameString("1. Soup");
+                GameString("2. Stew");
+                GameString("3. Gumbo");
+                int input;
+
 
                 while (true)
                 {
-                    input = InteractWithChest(input);
+                    input = Convert.ToInt32(Console.ReadLine());    
+                    if (GetNumInRange(input,1,3))
+                    {
+                        GetSoupType(input);
+                        break;
+                    }
 
-                    if (input == "LOCK")
+                }
+              
+                  
+
+                GameString("What main ingredient would you like to have in your soup?");
+                GameString("1. Mushroom");
+                GameString("2. Chicken");
+                GameString("3. Carrots");
+                GameString("4. Potatoes");
+
+                while (true)
+                {
+                    input = Convert.ToInt32(Console.ReadLine());
+                    if (GetNumInRange(input, 1, 4))
                     {
-                        if (chestState == CHESTSTATE.LOCK)
-                        {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            GameString("The chest is already locked!");
-                        }
-                        else if (chestState == CHESTSTATE.OPEN)
-                        {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            GameString("The chest needs to be closed first!");
-                        }
-                        else if (chestState == CHESTSTATE.CLOSE || chestState == CHESTSTATE.UNLOCK)
-                        {
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            chestState = CHESTSTATE.LOCK;
-                            GameString("The chest is now locked.");
-                        }
+                        GetIngredient(input);
+                        break;
                     }
-                    else if (input == "UNLOCK")
+
+                }
+
+
+
+                GameString("What seasoning would you like to have in your soup?");
+                GameString("1. Sweet");
+                GameString("2. Salty");
+                GameString("3. Spicy");
+
+                while (true)
+                {
+                    input = Convert.ToInt32(Console.ReadLine());
+                    if (GetNumInRange(input, 1, 3))
                     {
-                        if (chestState == CHESTSTATE.UNLOCK)
-                        {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            GameString("The chest is already unlocked!");
-                        }
-                        else if (chestState == CHESTSTATE.OPEN)
-                        {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            GameString("The chest is already unlocked!");
-                        }
-                        else if (chestState == CHESTSTATE.CLOSE)
-                        {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            GameString("The chest is already unlocked!");
-                        }
-                        else
-                        {
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            chestState = CHESTSTATE.UNLOCK;
-                            GameString("The chest is now unlocked.");
-                        }
+                        GetSeasoning(input);
+                        break;
                     }
-                    else if (input == "OPEN")
-                    {
-                        if (chestState == CHESTSTATE.LOCK)
-                        {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            GameString("The chest is locked, you need to unlock it first!");
-                        }
-                        else if (chestState == CHESTSTATE.OPEN)
-                        {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            GameString("The chest is already open!");
-                        }
-                        else
-                        {
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            chestState = CHESTSTATE.OPEN;
-                            GameString("The chest is now open.");
-                        }
-                    }
-                    else if (input == "CLOSE")
-                    {
-                        if (chestState == CHESTSTATE.OPEN)
-                        {
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            chestState = CHESTSTATE.CLOSE;
-                            GameString("The chest is now closed.");
-                        }
-                        else
-                        {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            GameString("The chest needs to be opened first!");
-                        }
-                    }
-                    else
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        GameString("Invalid Input!");
-                    }
+
+                }
+
+
+                Console.ForegroundColor = ConsoleColor.Green;
+                GameString($"YOUR ORDER IS READY! ENJOY YOUR {soup.Item3} {soup.Item2} {soup.Item1}!");
+
+            }
+
+
+            void GetSoupType(int input)
+            {
+
+                if (input == 1)
+                {
+                    soup.Item1 = SOUPTYPE.SOUP;
+
+                }
+                else if (input == 2)
+                {
+                    soup.Item1 = SOUPTYPE.STEW;
+                }
+                else if (input == 3)
+                {
+                    soup.Item1 = SOUPTYPE.GUMBO;
+                }
+
+            }
+
+
+
+            void GetIngredient(int input)
+            {
+
+                if (input == 1)
+                {
+                    soup.Item2 = MAININGREDIENT.MUSHROOM;
+                }
+                else if (input == 2)
+                {
+                    soup.Item2 = MAININGREDIENT.CHICKEN;
+                }
+                else if (input == 3)
+                {
+                    soup.Item2 = MAININGREDIENT.CARROTS;
+                }
+                else if (input == 4)
+                {
+                    soup.Item2 = MAININGREDIENT.POTATOES;
                 }
             }
+
+
+            void GetSeasoning(int input)
+            {
+
+                if (input == 1)
+                {
+                    soup.Item3 = SEASONING.SWEET;
+                }
+                else if (input == 2)
+                {
+                    soup.Item3 = SEASONING.SALTY;
+                }
+                else if (input == 3)
+                {
+                    soup.Item3 = SEASONING.SPICY;
+                }
+            }
+
+
+
+
 
             void GameString(string text)
             {
@@ -117,22 +153,42 @@ namespace Application
                 Console.WriteLine();
             }
 
-            string InteractWithChest(string text)
+
+
+            bool GetNumInRange(int num, int min, int max)
             {
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                text = Console.ReadLine();
-                text = text.ToUpper();
-                Console.WriteLine();
-                return text;
+                if (num < min || num > max)
+                {
+                    GameString("Invalid Input, Try again");
+                    return false;
+                }
+                return true;
             }
+
         }
 
-        enum CHESTSTATE
-        {
-            LOCK,
-            UNLOCK,
-            OPEN,
-            CLOSE
-        }
+    }
+
+    enum SOUPTYPE
+    {
+        SOUP,
+        STEW,
+        GUMBO
+
+    }
+
+    enum MAININGREDIENT
+    {
+        MUSHROOM,
+        CHICKEN,
+        CARROTS,
+        POTATOES,
+    }
+
+    enum SEASONING
+    {
+        SWEET,
+        SALTY,
+        SPICY
     }
 }

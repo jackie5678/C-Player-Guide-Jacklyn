@@ -1,8 +1,8 @@
 ﻿using System;
 
-public class Class1
+public class ManticoreHunt
 {
-	public Class1()
+	public void Manticore()
 	{
         int maxCityHealth = 15;
         int currentCityHealth = 15;
