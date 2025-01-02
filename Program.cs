@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Dynamic;
+using static Application.Arrow;
 
 namespace Application
 {
@@ -6,144 +8,128 @@ namespace Application
     {
         static void Main(string[] args)
         {
+            Arrow arrow = new Arrow();
 
-            (SOUPTYPE, MAININGREDIENT, SEASONING) soup = (SOUPTYPE.SOUP, MAININGREDIENT.MUSHROOM, SEASONING.SWEET);
+            Console.Title = "Vin Flether's Arrow Shop";
 
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Title = "Simula Soup Shop";
+            GameString("Welcome to Vin Flether's Arrow Shop!");
+            GameString("What type of arrow would you like to purchase?");
 
+            GameString("1. Wood Arrow");
+            GameString("2. Steel Arrow");
+            GameString("3. Obsidian Arrow");
 
+            int input;
+            float lengthInput;
 
-            SoupMaker();
-
-
-            void SoupMaker()
+            while (true)
             {
-                GameString("Welcome to Simula Soup Shop!");
-                GameString("What type of soup would you like to have made?");
+                input = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine();
 
-                GameString("1. Soup");
-                GameString("2. Stew");
-                GameString("3. Gumbo");
-                int input;
-
-
-                while (true)
+                if (NumberInRange(input, 1, 3))
                 {
-                    input = Convert.ToInt32(Console.ReadLine());    
-                    if (GetNumInRange(input,1,3))
-                    {
-                        GetSoupType(input);
-                        break;
-                    }
-
+                    GetArrowType(input);
+                    break;
                 }
-              
-                  
-
-                GameString("What main ingredient would you like to have in your soup?");
-                GameString("1. Mushroom");
-                GameString("2. Chicken");
-                GameString("3. Carrots");
-                GameString("4. Potatoes");
-
-                while (true)
-                {
-                    input = Convert.ToInt32(Console.ReadLine());
-                    if (GetNumInRange(input, 1, 4))
-                    {
-                        GetIngredient(input);
-                        break;
-                    }
-
-                }
-
-
-
-                GameString("What seasoning would you like to have in your soup?");
-                GameString("1. Sweet");
-                GameString("2. Salty");
-                GameString("3. Spicy");
-
-                while (true)
-                {
-                    input = Convert.ToInt32(Console.ReadLine());
-                    if (GetNumInRange(input, 1, 3))
-                    {
-                        GetSeasoning(input);
-                        break;
-                    }
-
-                }
-
-
-                Console.ForegroundColor = ConsoleColor.Green;
-                GameString($"YOUR ORDER IS READY! ENJOY YOUR {soup.Item3} {soup.Item2} {soup.Item1}!");
 
             }
 
 
-            void GetSoupType(int input)
+            while (true)
             {
+                GameString("What type of fletching would you like?");
+                GameString("1. Turkey Feather");
+                GameString("2. Plastic");
+                GameString("3. Goose Feather");
 
+                input = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine();
+
+                if (NumberInRange(input, 1, 3))
+                {
+                    GetFletchingType(input);
+                    break;
+                }
+            }
+
+            while (true)
+            {
+                GameString("What shaft length would you like your arrow to be?");
+                lengthInput = Convert.ToSingle(Console.ReadLine());
+                Console.WriteLine();
+
+                if (LengthInRange(lengthInput,60,100))
+                {
+                    arrow.Length = lengthInput;
+                    break;
+                }
+            }
+
+            Console.Clear();
+
+            GameString($"You chosen Arrow specifications is {arrow.ArrowHead} ArrowHead,{arrow.Fletching} Fletching, {arrow.Length} Shaft Length");
+           
+            GameString($"The total cost of your arrow is {arrow.GetCost():0.00} gold.");
+
+
+            void GetArrowType(int input)
+            {
                 if (input == 1)
                 {
-                    soup.Item1 = SOUPTYPE.SOUP;
-
+                   arrow.ArrowHead = ArrowHeadType.Wood;
                 }
                 else if (input == 2)
                 {
-                    soup.Item1 = SOUPTYPE.STEW;
+                    arrow.ArrowHead = ArrowHeadType.Steel;
                 }
                 else if (input == 3)
                 {
-                    soup.Item1 = SOUPTYPE.GUMBO;
-                }
+                    arrow.ArrowHead = ArrowHeadType.Obsidian;
 
+                }
             }
 
 
 
-            void GetIngredient(int input)
+            void GetFletchingType(int input)
             {
-
                 if (input == 1)
                 {
-                    soup.Item2 = MAININGREDIENT.MUSHROOM;
+                    arrow.Fletching = FletchingType.TurkeyFeather;
                 }
                 else if (input == 2)
                 {
-                    soup.Item2 = MAININGREDIENT.CHICKEN;
+                    arrow.Fletching = FletchingType.Plastic;
                 }
                 else if (input == 3)
                 {
-                    soup.Item2 = MAININGREDIENT.CARROTS;
-                }
-                else if (input == 4)
-                {
-                    soup.Item2 = MAININGREDIENT.POTATOES;
+                    arrow.Fletching = FletchingType.GooseFeather;
                 }
             }
 
 
-            void GetSeasoning(int input)
+            bool LengthInRange(float input, float min, float max)
             {
-
-                if (input == 1)
+                if (input < min || input > max)
                 {
-                    soup.Item3 = SEASONING.SWEET;
+                    GameString("Invalid input. Please try again.");
+                    return false;
                 }
-                else if (input == 2)
-                {
-                    soup.Item3 = SEASONING.SALTY;
-                }
-                else if (input == 3)
-                {
-                    soup.Item3 = SEASONING.SPICY;
-                }
+                return true;
             }
 
 
+
+            bool NumberInRange(int input, int min, int max)
+            {
+                if (input < min || input > max)
+                {
+                    GameString("Invalid input. Please try again.");
+                    return false;
+                }
+                return true;
+            }
 
 
 
@@ -153,42 +139,98 @@ namespace Application
                 Console.WriteLine();
             }
 
+        }
+    }
 
 
-            bool GetNumInRange(int num, int min, int max)
-            {
-                if (num < min || num > max)
-                {
-                    GameString("Invalid Input, Try again");
-                    return false;
-                }
-                return true;
-            }
+    class Arrow
+    {
 
+        float _length;
+        ArrowHeadType _arrowHead;
+        FletchingType _fletching;
+
+
+        public Arrow()
+        {
+            _length = 0;
+            _arrowHead = ArrowHeadType.Wood;
+            _fletching = FletchingType.TurkeyFeather;
         }
 
-    }
 
-    enum SOUPTYPE
-    {
-        SOUP,
-        STEW,
-        GUMBO
+        public ArrowHeadType ArrowHead
+        {
+            get { return _arrowHead; }
+            set { _arrowHead = value; }
+        }
 
-    }
+       
 
-    enum MAININGREDIENT
-    {
-        MUSHROOM,
-        CHICKEN,
-        CARROTS,
-        POTATOES,
-    }
 
-    enum SEASONING
-    {
-        SWEET,
-        SALTY,
-        SPICY
+        public FletchingType Fletching
+        {
+            get { return _fletching; }
+            set { _fletching = value; }
+        }
+
+    
+        public float Length
+        {
+            get{ return _length; }
+            set { _length = value; }
+        }   
+
+        public float GetCost()
+        {
+            float cost = 0;
+            switch (_arrowHead)
+            {
+                case ArrowHeadType.Wood:
+                    cost += 3;
+                    break;
+                case ArrowHeadType.Steel:
+                    cost += 10;
+                    break;
+                case ArrowHeadType.Obsidian:
+                    cost += 5;
+                    break;
+            }
+
+            switch (_fletching)
+            {
+                case FletchingType.TurkeyFeather:
+                    cost += 5;
+                    break;
+                case FletchingType.Plastic:
+                    cost += 10;
+                    break;
+                case FletchingType.GooseFeather:
+                    cost += 3;
+                    break;
+            }
+
+            cost += _length * 0.05f;
+
+            return cost;
+        }
+
+
+        public enum ArrowHeadType
+        {
+            Wood,
+            Steel,
+            Obsidian
+        }
+
+        public enum FletchingType
+        {
+            TurkeyFeather,
+            Plastic,
+            GooseFeather
+        }
+
+       
+
     }
 }
