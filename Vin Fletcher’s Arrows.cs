@@ -16,74 +16,152 @@ namespace Application
 
           
 
-            int input;
+            
             float lengthInput;
+            int gameInput;
 
             while (true)
             {
-                GameString("Choose the type of arrowhead you would like.");
-                GameString("1. Wood Arrow");
-                GameString("2. Steel Arrow");
-                GameString("3. Obsidian Arrow");
+                GameString("Please input the optionn number for the type of arrow you would like to purchase.");
+                GameString("1. Custom Arrow");
+                GameString("2. Premade Arrow");
 
-                input = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine();
+                gameInput = Convert.ToInt32(Console.ReadLine());
 
-                if (NumberInRange(input, 1, 3))
+                if (gameInput == 1)
                 {
-                    GetArrowType(input);
+                    CustomArrow();
                     break;
+                }
+                else if (gameInput == 2)
+                {
+                    PremadArrow();
+                    break;
+                }
+                else
+                {
+                    GameString("Invalid input. Please try again.");
                 }
             }
 
-            while (true)
+
+          
+
+
+
+            void PremadArrow()
             {
-                GameString("What type of fletching would you like?");
-                GameString("1. Turkey Feather");
-                GameString("2. Plastic");
-                GameString("3. Goose Feather");
+                int input;
 
-                input = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine();
-
-                if (NumberInRange(input, 1, 3))
+                while (true)
                 {
-                    GetFletchingType(input);
+                    GameString("Please select the type of premade arrow you would like to purchase.");
+                    GameString("1. Elite Arrow");
+                    GameString("2. Beginner Arrow");
+                    GameString("3. Marksman Arrow");
+                    input = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine();
+                   
+                    switch (input)
+                    {
+                        case 1:
+                            arrow = Arrow.CreateEliteArrow();
+                            break;
+                        case 2:
+                            arrow = Arrow.CreaterBegginerArrow();
+                            break;
+                        case 3:
+                            arrow = Arrow.CreateMarksmanArrow();
+                            break;
+                        default:
+                            GameString("Invalid input. Please try again.");
+                            continue;
+                    }
+
+                    Console.Clear();
+
+                    GameString($"You chosen Arrow specifications is {arrow.MyArrowHead} ArrowHead, {arrow.MyFletching} Fletching, {arrow.GetLength()} Shaft Length.");
+                    GameString($"The total cost of your arrow is {arrow.GetCost():00.00} gold.");
                     break;
                 }
+
             }
 
-            while (true)
+            void CustomArrow()
             {
-                GameString("What shaft length would you like your arrow to be?");
-                lengthInput = Convert.ToSingle(Console.ReadLine());
-                Console.WriteLine();
-
-                if (LengthInRange(lengthInput, 60, 100))
+                int input;
+                while (true)
                 {
-                    arrow.SetLength(lengthInput);
-                    break;
+                    GameString("Choose the type of arrowhead you would like.");
+                    GameString("1. Wood Arrow");
+                    GameString("2. Steel Arrow");
+                    GameString("3. Obsidian Arrow");
+
+                    input = Convert.ToInt32(Console.ReadLine());
+
+                    Console.WriteLine();
+
+                    if (NumberInRange(input, 1, 3))
+                    {
+                        GetArrowType(input);
+                        break;
+                    }
                 }
+
+                while (true)
+                {
+                    GameString("What type of fletching would you like?");
+                    GameString("1. Turkey Feather");
+                    GameString("2. Plastic");
+                    GameString("3. Goose Feather");
+
+                    input = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine();
+
+                    if (NumberInRange(input, 1, 3))
+                    {
+                        GetFletchingType(input);
+                        break;
+                    }
+                }
+
+                while (true)
+                {
+                    GameString("What shaft length would you like your arrow to be?");
+                    lengthInput = Convert.ToSingle(Console.ReadLine());
+                    Console.WriteLine();
+
+                    if (LengthInRange(lengthInput, 60, 100))
+                    {
+                        arrow.SetLength(lengthInput);
+                        break;
+                    }
+                }
+
+                Console.Clear();
+
+                GameString($"You chosen Arrow specifications is {arrow.MyArrowHead} ArrowHead, {arrow.MyFletching} Fletching, {arrow.GetLength()} Shaft Length.");
+                GameString($"The total cost of your arrow is {arrow.GetCost():00.00} gold.");
+
+
             }
 
-            Console.Clear();
 
-            GameString($"You chosen Arrow specifications is {arrow.GetArrowHeadType()} ArrowHead, {arrow.GetFletching()} Fletching, {arrow.GetLength()} Shaft Length.");
-            GameString($"The total cost of your arrow is {arrow.GetCost():00.00} gold.");
+
 
             void GetArrowType(int input)
             {
                 if (input == 1)
                 {
-                    arrow.SetArrowHeadType(ArrowHeadType.Wood);
+                    arrow.MyArrowHead = ArrowHeadType.Wood;
                 }
                 else if (input == 2)
                 {
-                    arrow.SetArrowHeadType(ArrowHeadType.Steel);
+                    arrow.MyArrowHead = ArrowHeadType.Steel;
                 }
                 else if (input == 3)
                 {
-                    arrow.SetArrowHeadType(ArrowHeadType.Obsidian);
+                    arrow.MyArrowHead = ArrowHeadType.Obsidian;
                 }
             }
 
@@ -91,15 +169,15 @@ namespace Application
             {
                 if (input == 1)
                 {
-                    arrow.SetFletching(FletchingType.TurkeyFeather);
+                    arrow.MyFletching = FletchingType.TurkeyFeather;
                 }
                 else if (input == 2)
                 {
-                    arrow.SetFletching(FletchingType.Plastic);
+                    arrow.MyFletching = FletchingType.Plastic;
                 }
                 else if (input == 3)
                 {
-                    arrow.SetFletching(FletchingType.GooseFeather); 
+                    arrow.MyFletching = FletchingType.GooseFeather; 
                 }
             }
 
@@ -140,12 +218,11 @@ namespace Application
 
 
         public float GetLength() => _length;
-        public ArrowHeadType GetArrowHeadType() => _arrowHead;
-        public FletchingType GetFletching() => _fletching;
+        public ArrowHeadType MyArrowHead { get; set; }
+        public FletchingType MyFletching { get; set; }
 
         public float SetLength(float value) => _length = value;
-        public ArrowHeadType SetArrowHeadType(ArrowHeadType value) => _arrowHead = value;
-        public FletchingType SetFletching(FletchingType value) => _fletching = value;
+       
 
         public Arrow()
         {
@@ -153,6 +230,37 @@ namespace Application
             _arrowHead = ArrowHeadType.Wood;
             _fletching = FletchingType.TurkeyFeather;
         }
+
+
+        public static Arrow CreateEliteArrow()
+        {
+            Arrow arrow = new Arrow();
+
+            arrow.MyArrowHead = ArrowHeadType.Steel;
+            arrow.MyFletching = FletchingType.Plastic;
+            arrow.SetLength(95);
+
+            return arrow;
+        }
+
+        public static  Arrow CreaterBegginerArrow()
+        {
+            Arrow arrow = new Arrow();
+            arrow.MyArrowHead = ArrowHeadType.Wood;
+            arrow.MyFletching = FletchingType.GooseFeather;
+            arrow.SetLength(75);
+            return arrow;
+        }
+
+        public static Arrow CreateMarksmanArrow()
+        {
+            Arrow arrow = new Arrow();
+            arrow.MyArrowHead = ArrowHeadType.Steel;
+            arrow.MyFletching = FletchingType.GooseFeather;
+            arrow.SetLength(65);
+            return arrow;
+        }
+
 
         public float GetCost()
         {
