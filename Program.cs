@@ -1,4 +1,6 @@
-﻿using IntroductionToC_.Fountain_Of_Objects;
+﻿using IntroductionToC_.Asteroids;
+using IntroductionToC_.Fountain_Of_Objects;
+using IntroductionToC_.TIC_TAC_TOE;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
@@ -14,10 +16,12 @@ namespace Application
 
         public static void Main(String[] args)
         {
+           
+           TIC_TAC_TOE_Game game =  new TIC_TAC_TOE_Game();
 
-
-
-
+            game.Run();
+          
+            
         }
     }
 }
