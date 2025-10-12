@@ -27,6 +27,21 @@ namespace IntroductionToC_.TIC_TAC_TOE
             Console.WriteLine($"| {board.GameBoard[0, 2]} | {board.GameBoard[1, 2]} | {board.GameBoard[2, 2]} |");
             Console.WriteLine($"+---+---+---+");
             Console.WriteLine();
+       }
+
+        public void DisplayInstructions()
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("The board values can be set using numbers");
+            Console.WriteLine($"+---+---+---+");
+            Console.WriteLine($"| 1 | 2 | 3 |");
+            Console.WriteLine($"+---+---+---+");
+            Console.WriteLine($"| 4 | 5 | 6 |");
+            Console.WriteLine($"+---+---+---+");
+            Console.WriteLine($"| 7 | 8 | 9 |");
+            Console.WriteLine($"+---+---+---+");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }

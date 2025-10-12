@@ -38,37 +38,30 @@ namespace IntroductionToC_.TIC_TAC_TOE
         {
            
             Console.WriteLine("Welcome To TIC-TAC-TOE");
-          
+            boardRendrer.DisplayInstructions();
+
             while (turnCount < 9)
             {
-                boardRendrer.DisplayBoard();
+             
                 Console.WriteLine($"It is currently {currentPlayer.TYPE} turn");
 
+                boardRendrer.DisplayBoard();
+
                 Console.WriteLine($"{currentPlayer.TYPE}, Please make your selection on the grid.");
-
-                Console.WriteLine("+----------------------+");
-                Console.WriteLine($"1 - TOP LEFT ON GRID");
-                Console.WriteLine("------------------------");
-                Console.WriteLine($"2 - TOP MIDDLE ON GRID ");
-                Console.WriteLine("------------------------");
-                Console.WriteLine($"3 - TOP RIGHT ON GRID");
-                Console.WriteLine("------------------------");
-                Console.WriteLine($"4 - MIDDLE LEFT ON GRID");
-                Console.WriteLine("------------------------");
-                Console.WriteLine($"5 - MIDDLE OF GRID");
-                Console.WriteLine("------------------------");
-                Console.WriteLine($"6 - MIDDLE RIGHT ON GRID");
-                Console.WriteLine("------------------------");
-                Console.WriteLine($"7 - BOTTOM LEFT ON GRID");
-                Console.WriteLine("------------------------");
-                Console.WriteLine($"8 - BOTTOM MIDDLE ON GRID");
-                Console.WriteLine("------------------------");
-                Console.WriteLine($"9 - BOTTOM LEFT ON GRID");
-                Console.WriteLine("+----------------------+");
                 
-                board.SetBoardValue(GetPlayerMove(),currentPlayer.TYPE);
 
-            
+                
+                int input = GetPlayerMove();
+                
+                board.SetBoardValue(input, currentPlayer.TYPE);
+
+                if (board.CheckInput(input) == false)
+                {
+                    Console.WriteLine("PLease Input A Valid Command");
+                    Console.WriteLine();
+                    continue;
+                }
+
 
                 if (HasWon(board))
                 {
@@ -76,7 +69,7 @@ namespace IntroductionToC_.TIC_TAC_TOE
 
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine($"{currentPlayer.TYPE} HAS  WON!");
-                    
+                    Console.WriteLine($"GAME OVER");
                     break;
                 }
 
@@ -92,8 +85,10 @@ namespace IntroductionToC_.TIC_TAC_TOE
                 }
             }
 
+            Console.ForegroundColor= ConsoleColor.Yellow;
             Console.WriteLine($"It's A DRAW");
-            Console.WriteLine($"GAMEOVER");
+            Console.WriteLine($"GAME OVER");
+           
         }
 
 

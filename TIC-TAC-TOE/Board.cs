@@ -18,136 +18,63 @@ namespace IntroductionToC_.TIC_TAC_TOE
         }
 
 
-        public void SetBoardValue(int input, PlayerType player)
+        public bool SetBoardValue(int input, PlayerType player)
         {
-
-             CheckInput(input);
-
-            if (ValidateBoardInput(input))
+            
+           if (ValidateBoardPosition(input))
+           {
+                return false;
+           }
+           string playerSymbol = "";
+             
+            
+      
+            if (player == PlayerType.XPLayer)
             {
-                return;
+               playerSymbol = "X";
             }
-            if (input == 1)
+            else if(player == PlayerType.OPlayer)
             {
-                if(player == PlayerType.XPLayer)
-                {
-                   GameBoard[0, 0] = "X";
-                }
-                else
-                {
-                    GameBoard[0, 0] = "O";
-                }
-                
-            }
-
-            if (input == 2)
-            {
-                if (player == PlayerType.XPLayer)
-                {
-                    GameBoard[1, 0] = "X";
-                }
-                else
-                {
-                    GameBoard[1, 0] = "O";
-                }
-
-            }
-          
-            if (input == 3)
-            {
-                if (player == PlayerType.XPLayer)
-                {
-                    GameBoard[2, 0] = "X";
-                }
-                else
-                {
-                    GameBoard[2, 0] = "O";
-                }
-
-            }
-
-            if (input == 4)
-            {
-                if (player == PlayerType.XPLayer)
-                {
-                    GameBoard[0, 1] = "X";
-                }
-                else
-                {
-                    GameBoard[0, 1] = "O";
-                }
-
-            }
-
-            if (input == 5)
-            {
-                if (player == PlayerType.XPLayer)
-                {
-                    GameBoard[1, 1] = "X";
-                }
-                else
-                {
-                    GameBoard[1, 1] = "O";
-                }
-
-            }
-
-            if (input == 6)
-            {
-                if (player == PlayerType.XPLayer)
-                {
-                    GameBoard[2, 1] = "X";
-                }
-                else
-                {
-                    GameBoard[2, 1] = "O";
-                }
-
-            }
-
-            if (input == 7)
-            {
-                if (player == PlayerType.XPLayer)
-                {
-                    GameBoard[0, 2] = "X";
-                }
-                else
-                {
-                    GameBoard[0, 2] = "O";
-                }
-
-            }
-
-            if (input == 8)
-            {
-                if (player == PlayerType.XPLayer)
-                {
-                    GameBoard[1, 2] = "X";
-                }
-                else
-                {
-                    GameBoard[1, 2] = "O";
-                }
-
-            }
-
-            if (input == 9)
-            {
-                if (player == PlayerType.XPLayer)
-                {
-                    GameBoard[2, 2] = "X";
-                }
-                else
-                {
-                    GameBoard[2, 2] = "O";
-                }
-
+                playerSymbol = "O";
             }
 
 
+            switch (input)
+            {
+                case 1:
+                    GameBoard[0,0] = playerSymbol;
+                   break;
+                case 2:
+                    GameBoard[1,0] = playerSymbol;
+                    break;
+                case 3:
+                    GameBoard[2,0] = playerSymbol;
+                    break;
+                case 4: 
+                    GameBoard[0,1] = playerSymbol;
+                    break;
+                case 5:    
+                    GameBoard[1,1] = playerSymbol;
+                    break;
+                case 6:
+                    GameBoard[2,1] = playerSymbol;
+                    break;
+                case 7:
+                    GameBoard[0,2] = playerSymbol;
+                 break;
+                case 8:
+                    GameBoard[1, 2] = playerSymbol;
+                    break;
+                case 9:
+                    GameBoard[2, 2] = playerSymbol;
+                    break;
+
+            }
+
+            return false;
         }
 
-        public bool ValidateBoardInput(int input)
+        public bool ValidateBoardPosition(int input)
         {
 
             string positionValue = "";
@@ -155,13 +82,13 @@ namespace IntroductionToC_.TIC_TAC_TOE
             switch (input)
             {
                 case 1: positionValue = GameBoard[0, 0]; break;
-                case 2: positionValue = GameBoard[0, 1]; break;
-                case 3: positionValue = GameBoard[0, 2]; break;
-                case 4: positionValue = GameBoard[1, 0]; break;
+                case 2: positionValue = GameBoard[1, 0]; break;
+                case 3: positionValue = GameBoard[2, 0]; break;
+                case 4: positionValue = GameBoard[0, 1]; break;
                 case 5: positionValue = GameBoard[1, 1]; break;
-                case 6: positionValue = GameBoard[1, 2]; break;
-                case 7: positionValue = GameBoard[2, 0]; break;
-                case 8: positionValue = GameBoard[2, 1]; break;
+                case 6: positionValue = GameBoard[2, 1]; break;
+                case 7: positionValue = GameBoard[0, 2]; break;
+                case 8: positionValue = GameBoard[1, 2]; break;
                 case 9: positionValue = GameBoard[2, 2]; break;
             }
 
@@ -170,6 +97,7 @@ namespace IntroductionToC_.TIC_TAC_TOE
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("THAT POSITION IS OCCUPIED!");
                 Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine();
                 return true;
             }
 
@@ -181,7 +109,7 @@ namespace IntroductionToC_.TIC_TAC_TOE
 
 
 
-        private bool CheckInput(int input)
+        public bool CheckInput(int input)
         {
             int[] acceptedInput = { 1, 2, 3, 4, 5, 6, 7, 8, 9, };
             foreach(int i in acceptedInput)
@@ -193,6 +121,7 @@ namespace IntroductionToC_.TIC_TAC_TOE
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("INVALID INPUT!");
             Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
             return false;
         }
 
