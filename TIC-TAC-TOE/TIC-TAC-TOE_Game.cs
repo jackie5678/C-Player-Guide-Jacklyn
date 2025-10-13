@@ -75,14 +75,7 @@ namespace IntroductionToC_.TIC_TAC_TOE
 
 
                 turnCount++;
-                if (currentPlayer == playerX)
-                {
-                    currentPlayer = playerO;
-                }
-                else
-                {
-                    currentPlayer = playerX;
-                }
+                currentPlayer = (currentPlayer == playerX) ? playerO : playerX;
             }
 
             Console.ForegroundColor= ConsoleColor.Yellow;
@@ -98,31 +91,36 @@ namespace IntroductionToC_.TIC_TAC_TOE
             string o = "O";
 
             // win conditions in rows 
-            if ((board.GameBoard[0,0] == x)  && (board.GameBoard[1, 0] == x) && (board.GameBoard[2, 0] == x)) return true;
-            if ((board.GameBoard[0, 0] == o) && (board.GameBoard[1, 0] == o) && (board.GameBoard[2, 0] == o)) return true;
+            if ((board.GameBoard[0,0] == x)  && (board.GameBoard[1, 0] == x) && (board.GameBoard[2, 0] == x) ||
+                (board.GameBoard[0, 0] == o) && (board.GameBoard[1, 0] == o) && (board.GameBoard[2, 0] == o)) return true;
 
-            if ((board.GameBoard[0, 1] == x) && (board.GameBoard[1, 1] == x) && (board.GameBoard[2, 1] == x)) return true;
-            if ((board.GameBoard[0, 1] == o) && (board.GameBoard[1, 1] == o) && (board.GameBoard[2, 1] == o)) return true;
 
-            if ((board.GameBoard[0, 2] == x) && (board.GameBoard[1, 2] == x) && (board.GameBoard[2, 2] == x)) return true;
-            if ((board.GameBoard[0, 2] == o) && (board.GameBoard[1, 2] == o) && (board.GameBoard[2, 1] == o)) return true;
+            if ((board.GameBoard[0, 1] == x) && (board.GameBoard[1, 1] == x) && (board.GameBoard[2, 1] == x)  ||
+                (board.GameBoard[0, 1] == o) && (board.GameBoard[1, 1] == o) && (board.GameBoard[2, 1] == o)) return true;
+ 
+
+            if ((board.GameBoard[0, 2] == x) && (board.GameBoard[1, 2] == x) && (board.GameBoard[2, 2] == x) || 
+                (board.GameBoard[0, 2] == o) && (board.GameBoard[1, 2] == o) && (board.GameBoard[2, 1] == o)) return true;
+
 
 
             // win condtiond for columns
-            if ((board.GameBoard[0, 0] == x) && (board.GameBoard[0,1] == x) && (board.GameBoard[0,2] == x)) return true;
-            if ((board.GameBoard[0, 0] == o) && (board.GameBoard[0,1] == o) && (board.GameBoard[0,2] == o)) return true;
+            if ((board.GameBoard[0, 0] == x) && (board.GameBoard[0,1] == x) && (board.GameBoard[0,2] == x)  || 
+                (board.GameBoard[0, 0] == o) && (board.GameBoard[0, 1] == o) && (board.GameBoard[0, 2] == o)) return true;
+            
 
 
-            if ((board.GameBoard[1, 0] == x) && (board.GameBoard[1, 1] == x) && (board.GameBoard[1, 2] == x)) return true;
-            if ((board.GameBoard[1, 0] == o) && (board.GameBoard[1, 1] == o) && (board.GameBoard[1, 2] == o)) return true;
+            if ((board.GameBoard[1, 0] == x) && (board.GameBoard[1, 1] == x) && (board.GameBoard[1, 2] == x) || 
+                (board.GameBoard[1, 0] == o) && (board.GameBoard[1, 1] == o) && (board.GameBoard[1, 2] == o)) return true;
 
-            if ((board.GameBoard[2, 0] == x) && (board.GameBoard[2, 1] == x) && (board.GameBoard[2, 2] == x)) return true;
-            if ((board.GameBoard[2, 0] == o) && (board.GameBoard[2, 1] == o) && (board.GameBoard[2, 2] == o)) return true;
+
+            if ((board.GameBoard[2, 0] == x) && (board.GameBoard[2, 1] == x) && (board.GameBoard[2, 2] == x) || 
+                (board.GameBoard[2, 0] == o) && (board.GameBoard[2, 1] == o) && (board.GameBoard[2, 2] == o)) return true;
+
 
             // win conditions in  daigonal
-            if ((board.GameBoard[0, 0] == x) && (board.GameBoard[1, 1] == x) && (board.GameBoard[2, 2] == x)) return true;
-            if ((board.GameBoard[0, 0] == o) && (board.GameBoard[1, 1] == o) && (board.GameBoard[2, 2] == o)) return true;
-
+            if ((board.GameBoard[0, 0] == x) && (board.GameBoard[1, 1] == x) && (board.GameBoard[2, 2] == x) ||
+                (board.GameBoard[0, 0] == o) && (board.GameBoard[1, 1] == o) && (board.GameBoard[2, 2] == o)) return true;
 
             return false;
         }
