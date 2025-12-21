@@ -42,6 +42,7 @@ namespace IntroductionToC_.TIC_TAC_TOE
             Console.WriteLine($"+---+---+---+");
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
         }
     }
 }

@@ -1,10 +1,4 @@
-﻿using IntroductionToC_.Fountain_Of_Objects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace IntroductionToC_.TIC_TAC_TOE
 {
@@ -54,6 +48,8 @@ namespace IntroductionToC_.TIC_TAC_TOE
                 int input = GetPlayerMove();
                 
                 board.SetBoardValue(input, currentPlayer.TYPE);
+
+                 boardRendrer.DisplayInstructions();
 
                 if (board.CheckInput(input) == false)
                 {
@@ -128,6 +124,7 @@ namespace IntroductionToC_.TIC_TAC_TOE
         public int GetPlayerMove()
         {
             int input = Convert.ToInt32(Console.ReadLine());
+           
          
             return input;
         }
