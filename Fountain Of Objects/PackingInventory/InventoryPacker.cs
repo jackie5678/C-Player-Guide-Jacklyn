@@ -9,7 +9,7 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
     public class InventoryPacker
     {
      
-        Pack Backpack = new Pack(5.0f, 8);
+        Pack backpack = new Pack(5.0f, 8);
         //Pack BeltPouch = new Pack(2.0f, 3);
         //Pack MountSatchel = new Pack(10.0f, 15);
 
@@ -17,9 +17,9 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
         {
             Console.WriteLine("Welcome To The Inventory Packer!");
             Console.WriteLine("Pack Items in to your Backpack for your journey");
-            Console.WriteLine($"Backpack {Backpack.GetPackDetails()}");
+            DisplayBackpackDetails();
             Console.WriteLine();
-
+            Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
             DisplayMenu();
 
             while (true)
@@ -33,22 +33,28 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
                 }
                 else if (input == 7)
                 {
-                    Backpack.ListItems();
+                    backpack.ListItems();
                 }
                 else
                 {
                     CreateInventoyItem(input);
                 }
+               
                 Console.WriteLine();
+ 
+                backpack.ListItems();
+
+                Console.WriteLine();
+                DisplayBackpackDetails();
+
                 DisplayMenu();
-                Console.WriteLine();
-                Console.WriteLine($"Backpack {Backpack.GetPackDetails()}");
             }
 
         }
 
         public void DisplayMenu()
         {
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Select an option:");
             Console.WriteLine("1. Add Arrow");
             Console.WriteLine("2. Add Bow");
@@ -58,6 +64,7 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
             Console.WriteLine("6. Add Sword");  
             Console.WriteLine("7. List Items in Backpack");
             Console.WriteLine("8. Exit");
+            Console.ForegroundColor = ConsoleColor.White;
         }
 
 
@@ -68,13 +75,24 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
             return input;
         }
 
+        public void DisplayBackpackDetails()
+        {
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine("----------------------------------------------------------------------------------------------");
+            Console.WriteLine($"Backpack {backpack.GetPackDetails()}");
+            Console.WriteLine("-----------------------------------------------------------------------------------------------");
+            Console.ForegroundColor = ConsoleColor.White;
+
+            Console.WriteLine();
+        }
+
         public int CreateInventoyItem(int input)
         {
             switch (input)
             {
                 case 1:
                     ArrowItem arrow = new ArrowItem();
-                    if (Backpack.AddItem(arrow))
+                    if (backpack.AddItem(arrow))
                     {
                        DisplayMessage(arrow);
                     }
@@ -85,7 +103,7 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
                     break;
                 case 2:
                     BowItem bow = new BowItem();
-                    if (Backpack.AddItem(bow))
+                    if (backpack.AddItem(bow))
                     {
                        DisplayMessage(bow);
                     }
@@ -96,7 +114,7 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
                     break;
                 case 3:
                     RopeItem rope = new RopeItem();
-                    if (Backpack.AddItem(rope))
+                    if (backpack.AddItem(rope))
                     {
                        DisplayMessage(rope);
                     }
@@ -107,7 +125,7 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
                     break;
                 case 4:
                     WaterItem waterBottle = new WaterItem();
-                    if (Backpack.AddItem(waterBottle))
+                    if (backpack.AddItem(waterBottle))
                     {
                         DisplayMessage(waterBottle);
                     }
@@ -118,7 +136,7 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
                     break;
                 case 5:
                     FoodRationsItem foodRation = new FoodRationsItem();
-                    if (Backpack.AddItem(foodRation))
+                    if (backpack.AddItem(foodRation))
                     {
                         DisplayMessage(foodRation);
                     }
@@ -129,7 +147,7 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
                     break;
                 case 6:
                     SwordItem sword = new SwordItem();
-                    if (Backpack.AddItem(sword))
+                    if (backpack.AddItem(sword))
                     {
                         DisplayMessage(sword);
                     }

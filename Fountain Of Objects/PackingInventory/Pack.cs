@@ -53,16 +53,18 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
 
         public void ListItems()
         {
-            Console.WriteLine(" Pack Contains:");
+            Console.WriteLine("Pack Contains:");
             foreach(var item in packInventory)
             {
                 if(item != null)
                 {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("-----------------------------------------------------------------------");
                     Console.WriteLine(item.ReturnItemData());
+                    Console.WriteLine("-----------------------------------------------------------------------");
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
             }
-            Console.WriteLine($"Current Weight: {currentWeight}/{maxWeight} kg");
-            Console.WriteLine($"Current Volume: {currentVolume}/{maxVolume} L");
         }
 
         public string GetPackDetails()
