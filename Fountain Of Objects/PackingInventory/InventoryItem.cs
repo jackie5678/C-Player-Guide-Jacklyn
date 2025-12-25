@@ -8,35 +8,23 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
 {
     public class InventoryItem
     {
-        public string name { get; private set; }
-        public float weight {  get; private set; }
-        public float volume {  get; private set; }
+        public string Name { get; private set; }
+        public float Weight {  get; private set; }
+        public float Volume {  get; private set; }
 
         public InventoryItem(string name, float weight, float volume)
         {
-            this.name = name;
-            this.weight = weight;
-            this.volume = volume;
+            this.Name = name;
+            this.Weight = weight;
+            this.Volume = volume;
         }
 
         public virtual string ReturnItemData()
         {
-            return $"{name} - Weight: {weight} kg, Volume: {volume} L";
+            return $"{Name} - Weight: {Weight} kg, Volume: {Volume} L";
         }
 
-        public float GetWeight()
-        {
-            return weight;
-        }
-        public float GetVolume()
-        {
-            return volume;
-        }
-
-        public string GetName()
-        {
-            return name;
-        }
+   
     }
 
     public class ArrowItem : InventoryItem

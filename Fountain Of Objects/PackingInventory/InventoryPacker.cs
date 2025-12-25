@@ -121,7 +121,7 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
         public void DisplayMessage(InventoryItem inventoryItem)
         {
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"Added {inventoryItem.GetName()} to backpack.");
+            Console.WriteLine($"Added {inventoryItem.Name} to backpack.");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine();
         }
@@ -129,7 +129,7 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
         public void DisplayErrorMessage(InventoryItem inventoryItem)
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"Could not add {inventoryItem.GetName()} to your backpack.\nBackpack is full or Item weight or volume is over the max limit. ");
+            Console.WriteLine($"Could not add {inventoryItem.Name} to your backpack.\nBackpack is full or Item weight or volume is over the max limit. ");
 
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine();

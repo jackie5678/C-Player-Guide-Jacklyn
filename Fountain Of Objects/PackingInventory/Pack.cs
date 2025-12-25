@@ -30,7 +30,7 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
 
         public bool AddItem(InventoryItem item)
         {
-            if(currentWeight + item.GetWeight() > maxWeight || currentVolume + item.GetVolume() > maxVolume || IsFull())
+            if(currentWeight + item.Weight > maxWeight || currentVolume + item.Volume > maxVolume || IsFull())
             {
                 return false;
             }
@@ -40,8 +40,8 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
                 if (packInventory[i] == null)
                 {
                     packInventory[i] = item;
-                    currentWeight += item.GetWeight();
-                    currentVolume += item.GetVolume();
+                    currentWeight += item.Weight;
+                    currentVolume += item.Volume;
                     currentItems++;
                     return true;
                 }
