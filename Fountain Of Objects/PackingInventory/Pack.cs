@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
 {
@@ -13,41 +9,34 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
         private InventoryItem[] packInventory = new InventoryItem[3];
 
 
-        private float maxWeight;
-        private float currentWeight = 0;
+        private float _maxWeight;
+        private float _currentWeight = 0;
 
-        private float maxVolume;
-        private float currentVolume = 0;
+        private float _maxVolume;
+        private float _currentVolume = 0;
 
         private int currentItems = 0;
 
         public Pack(float maxWeight, int maxVolume)
         {
-            this.maxWeight = maxWeight;
-            this.maxVolume = maxVolume;
+            _maxWeight = maxWeight;
+            _maxVolume = maxVolume;
         }
 
 
         public bool AddItem(InventoryItem item)
         {
-            if(currentWeight + item.Weight > maxWeight || currentVolume + item.Volume > maxVolume || IsFull())
+            if(_currentWeight + item.Weight > _maxWeight || _currentVolume + item.Volume > _maxVolume || IsFull())
             {
                 return false;
             }
-            
-            for(int i = 0; i < packInventory.Length; i++)
-            {
-                if (packInventory[i] == null)
-                {
-                    packInventory[i] = item;
-                    currentWeight += item.Weight;
-                    currentVolume += item.Volume;
-                    currentItems++;
-                    return true;
-                }
-            }
 
-            return false;
+            packInventory[currentItems] = item;
+            currentItems++;
+            _currentWeight += item.Weight;
+            _currentVolume += item.Volume;
+            return true;
+
         }
 
         public void ListItems()
@@ -61,26 +50,19 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
                     Console.WriteLine("-----------------------------------------------------------------------");
                     Console.WriteLine(item.ReturnItemData());
                     Console.WriteLine("-----------------------------------------------------------------------");
-                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.ResetColor();
                 }
             }
         }
 
         public string GetPackDetails()
         {
-            return $" Current Pack Size {currentItems}/{packInventory.Length}.  Current Weight: {currentWeight}/{maxWeight} kg. Current Volume: {currentVolume}/{maxVolume} L";
+            return $" Current Pack Size {currentItems}/{packInventory.Length}.  Current Weight: {_currentWeight}/{_maxWeight} kg. Current Volume: {_currentVolume}/{_maxVolume} L";
         }
 
         public bool IsFull()
         {
-            for(int i = 0; i < packInventory.Length; i++)
-            {
-                if (packInventory[i] == null)
-                {
-                    return false;
-                }
-            }
-            return true;
+            return currentItems >= packInventory.Length;
         }
 
 

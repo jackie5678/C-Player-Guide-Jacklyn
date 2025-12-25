@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
 {
@@ -14,14 +11,14 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
 
         public InventoryItem(string name, float weight, float volume)
         {
-            this.Name = name;
-            this.Weight = weight;
-            this.Volume = volume;
+            Name = name;
+            Weight = weight;
+            Volume = volume;
         }
 
         public virtual string ReturnItemData()
         {
-            return $"{Name} - Weight: {Weight} kg, Volume: {Volume} L";
+            return $"{Name.ToString()} - Weight: {Weight} kg, Volume: {Volume} L";
         }
 
    
@@ -29,101 +26,94 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
 
     public class ArrowItem : InventoryItem
     {
-
-        private int quantity;
         public ArrowItem() : base("Arrow", 0.1f, 0.05f)
         {
-            quantity = 20;
+          
         }
-
-
         public override string ReturnItemData()
         {
-            return $"{base.ReturnItemData()}, Quantity: {quantity}";
+            return $"{base.ReturnItemData()}";
         }
-   
-        
-  
     }
 
     public class BowItem : InventoryItem
     {
-        private int durability;
-        private float damage;
+        public int Durability {  get; private set; }
+        public float Damage {  get;  set; }
 
         public BowItem() : base("Bow", 1f, 4f)
         {
-            durability = 100;
-            damage = 5f;
+            Durability = 100;
+            Damage = 5f;
         }
 
         public override string ReturnItemData()
         {
-            return $"{base.ReturnItemData()}, Damage: {damage}, Durability: {durability} ";
+            return $"{base.ReturnItemData()}, Damage: {Damage}, Durability: {Durability} ";
         }
     }
 
     public class RopeItem : InventoryItem
     {
-        public float length;
-        public int durability;
+        public float Length { get; set; }
+        public int Durability { get; private set; }
         public RopeItem() : base("Rope", 1f, 1.5f)
         {
-            length = 10f; 
-            durability = 100;
+            Length = 10f; 
+            Durability = 100;
         }
 
 
         public override string ReturnItemData()
         {
-            return $"{base.ReturnItemData()}, Length: {length} m, Durability: {durability}";
+            return $"{base.ReturnItemData()}, Length: {Length} m, Durability: {Durability}";
         }
     }
 
     public class WaterItem : InventoryItem
     {
-        public float capacity;
+        public float Capacity {  get; private set; }
         public WaterItem() : base("WaterSkin", 2f, 3f)
         {
-            capacity = 15f;
+            Capacity = 15f;
         }
 
         public override string ReturnItemData()
         {
-            return $"{base.ReturnItemData()}, Capacity: {capacity} L";
+            return $"{base.ReturnItemData()}, Capacity: {Capacity} L";
         }
     }
 
     public class FoodRationsItem : InventoryItem
     {
-        public float timeBeforeSpoil;
-        public float nutritionValue;
+        public float TimeBeforeSpoil { get; set; }
+        public float NutritionValue { get; private set; }
         public FoodRationsItem() : base("Food Rations", 1f, 0.5f)
         {
-            timeBeforeSpoil = 5f;
-            nutritionValue = 200f; 
+            TimeBeforeSpoil = 5f;
+            NutritionValue = 200f; 
         }
      
 
         public override string ReturnItemData()
         {
-            return $"{base.ReturnItemData()}, Time before spoil: {timeBeforeSpoil} days, Nutrition value: {nutritionValue} kcal";
+            return $"{base.ReturnItemData()}, Time before spoil: {TimeBeforeSpoil} days, Nutrition value: {NutritionValue} kcal";
         }
     }
 
     public class SwordItem : InventoryItem
     {
-        private float damage;
-        private int durability; 
+        public float Damage { get; set; }
+        public int Durability { get; private set; }
         public SwordItem() : base("Sword", 3f, 2f)
         {
-            damage = 10f; 
-            durability = 100; 
+            Damage = 10f; 
+            Durability = 100; 
         }
 
         public override string ReturnItemData()
         {
-            return $"{base.ReturnItemData()}, Damage: {damage}, Durability: {durability}";
+            return $"{base.ReturnItemData()}, Damage: {Damage}, Durability: {Durability}";
         }
     }
 

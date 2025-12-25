@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
 {
@@ -16,10 +13,6 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
         public void Run()
         {
             Console.WriteLine("Welcome To The Inventory Packer!");
-            Console.WriteLine("Pack Items in to your Backpack for your journey");
-            DisplayBackpackDetails();
-            Console.WriteLine();
-            Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
             DisplayMenu();
 
             while (true)
@@ -54,14 +47,6 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
                    }
                       
                 }
-               
-                Console.WriteLine();
- 
-                backpack.ListItems();
-
-                Console.WriteLine();
-                DisplayBackpackDetails();
-
                 DisplayMenu();
             }
 
@@ -69,6 +54,7 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
 
         public void DisplayMenu()
         {
+            Console.WriteLine("Pack Items in to your Backpack for your journey");
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Select an option:");
             Console.WriteLine("1. Add Arrow");
@@ -79,7 +65,19 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
             Console.WriteLine("6. Add Sword");  
             Console.WriteLine("7. List Items in Backpack");
             Console.WriteLine("8. Exit");
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.ResetColor();
+
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine("----------------------------------------------------------------------------------------------");
+            Console.WriteLine($"Backpack {backpack.GetPackDetails()}");
+            Console.WriteLine("-----------------------------------------------------------------------------------------------");
+            Console.ResetColor();
+
+            Console.WriteLine();
+
+            backpack.ListItems();
+
         }
 
 
@@ -90,16 +88,7 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
             return input;
         }
 
-        public void DisplayBackpackDetails()
-        {
-            Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine("----------------------------------------------------------------------------------------------");
-            Console.WriteLine($"Backpack {backpack.GetPackDetails()}");
-            Console.WriteLine("-----------------------------------------------------------------------------------------------");
-            Console.ForegroundColor = ConsoleColor.White;
 
-            Console.WriteLine();
-        }
 
         public InventoryItem CreateInventoyItem(int input)
         {
@@ -122,6 +111,7 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"Added {inventoryItem.Name} to backpack.");
+            Console.WriteLine("------------------------------------------");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine();
         }
