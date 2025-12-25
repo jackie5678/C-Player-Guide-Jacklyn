@@ -8,9 +8,9 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
 {
     public class InventoryItem
     {
-        private string name;
-        private float weight;
-        private float volume;
+        public string name { get; private set; }
+        public float weight {  get; private set; }
+        public float volume {  get; private set; }
 
         public InventoryItem(string name, float weight, float volume)
         {
@@ -141,3 +141,11 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
 
 }
 
+public enum ItemType
+{
+    Arrow = 1,
+    Bow = 2,
+    Rope = 3,
+    Water = 4,
+    Food = 5,
+}

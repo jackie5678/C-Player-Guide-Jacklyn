@@ -25,8 +25,13 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
             while (true)
             {
                 int input = GetInput();
-                Console.WriteLine();    
-                if (input == 8)
+                Console.WriteLine(); 
+                
+                if(input >= 9)
+                {
+                    Console.WriteLine("Invalid Input");
+                }
+                else if (input == 8)
                 {
                     Console.WriteLine("Exiting Inventory Packer. Safe travels!");
                     break;
@@ -37,7 +42,17 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
                 }
                 else
                 {
-                    CreateInventoyItem(input);
+                    InventoryItem item = CreateInventoyItem(input);
+                
+                   if (backpack.AddItem(item))
+                   {
+                     DisplayMessage(item);
+                   }
+                   else
+                   {
+                      DisplayErrorMessage(item);
+                   }
+                      
                 }
                
                 Console.WriteLine();
@@ -86,91 +101,22 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
             Console.WriteLine();
         }
 
-        public int CreateInventoyItem(int input)
+        public InventoryItem CreateInventoyItem(int input)
         {
-            switch (input)
-            {
-                case 1:
-                    ArrowItem arrow = new ArrowItem();
-                    if (backpack.AddItem(arrow))
-                    {
-                       DisplayMessage(arrow);
-                    }
-                    else
-                    {
-                        DisplayErrorMessage(arrow);
-                    }
-                    break;
-                case 2:
-                    BowItem bow = new BowItem();
-                    if (backpack.AddItem(bow))
-                    {
-                       DisplayMessage(bow);
-                    }
-                    else
-                    {
-                       DisplayErrorMessage(bow);
-                    }
-                    break;
-                case 3:
-                    RopeItem rope = new RopeItem();
-                    if (backpack.AddItem(rope))
-                    {
-                       DisplayMessage(rope);
-                    }
-                    else
-                    {
-                       DisplayErrorMessage(rope);
-                    }
-                    break;
-                case 4:
-                    WaterItem waterBottle = new WaterItem();
-                    if (backpack.AddItem(waterBottle))
-                    {
-                        DisplayMessage(waterBottle);
-                    }
-                    else
-                    {
-                        DisplayErrorMessage(waterBottle);
-                    }
-                    break;
-                case 5:
-                    FoodRationsItem foodRation = new FoodRationsItem();
-                    if (backpack.AddItem(foodRation))
-                    {
-                        DisplayMessage(foodRation);
-                    }
-                    else
-                    {
-                        DisplayErrorMessage(foodRation);
-                    }
-                    break;
-                case 6:
-                    SwordItem sword = new SwordItem();
-                    if (backpack.AddItem(sword))
-                    {
-                        DisplayMessage(sword);
-                    }
-                    else
-                    {
-                        DisplayErrorMessage(sword);
-                    }
-                    break;
-                default:
-                    Console.WriteLine("Invalid option.");
-                    break;
-            }
-            return input;
+             return input switch
+             {
+                1 => new ArrowItem(),
+                2 =>  new BowItem(),
+                3 => new  RopeItem(),
+                4 => new WaterItem(),
+                5 => new FoodRationsItem(),
+                6 => new SwordItem(),
+                //_ => throw new NotImplementedException()
+            };
+
+         
         }
 
-        public void DisplayErrorMessage(InventoryItem inventoryItem)
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"Could not add {inventoryItem.GetName()} to your backpack.\nBackpack is full or Item weight or volume is over the max limit. ");
-           
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine();
-        }
 
         public void DisplayMessage(InventoryItem inventoryItem)
         {
@@ -179,7 +125,17 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine();
         }
+
+        public void DisplayErrorMessage(InventoryItem inventoryItem)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"Could not add {inventoryItem.GetName()} to your backpack.\nBackpack is full or Item weight or volume is over the max limit. ");
+
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
+        }
+
     }
 
-    
+
 }

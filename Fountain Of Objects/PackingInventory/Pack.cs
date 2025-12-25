@@ -32,7 +32,6 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
         {
             if(currentWeight + item.GetWeight() > maxWeight || currentVolume + item.GetVolume() > maxVolume || IsFull())
             {
-                //Console.WriteLine("Cannot add item: Exceeds pack limits or pack is full.");
                 return false;
             }
             
@@ -83,6 +82,8 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
             }
             return true;
         }
-        
-   }
+
+
+
+    }
 }
