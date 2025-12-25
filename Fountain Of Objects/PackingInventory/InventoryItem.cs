@@ -129,11 +129,4 @@ namespace IntroductionToC_.Fountain_Of_Objects.PackingInventory
 
 }
 
-public enum ItemType
-{
-    Arrow = 1,
-    Bow = 2,
-    Rope = 3,
-    Water = 4,
-    Food = 5,
-}
+
